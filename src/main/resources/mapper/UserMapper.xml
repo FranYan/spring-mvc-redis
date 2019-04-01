@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.theo.dao.UserDao">
+
+    <select id="selectById" parameterType="java.lang.Long" resultType="com.theo.entity.User">
+        select * from user
+        <where>
+            <if test="id != null">
+                id = #{id}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertUser" parameterType="com.theo.entity.User">
+        insert user(
+          username,
+          password,
+          salt,
+          create_date,
+          is_deleted,
+          deleted_date,
+          employee_id,
+          role_id
+          )
+        values (
+          #{username},
+          #{password},
+          #{salt},
+          #{createDate},
+          #{isDeleted},
+          #{deletedDate},
+          #{employeeId},
+          #{roleId}
+          )
+
+    </insert>
+
+</mapper>
