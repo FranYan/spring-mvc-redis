@@ -14,6 +14,7 @@ public class RedisCacheManager {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
+
     /**
      * 指定缓存失效时间
      *
@@ -141,7 +142,7 @@ public class RedisCacheManager {
      *
      * @param key
      *            键
-     * @param by
+     * @param delta
      *            要增加几(大于0)
      * @return
      */
@@ -157,7 +158,7 @@ public class RedisCacheManager {
      *
      * @param key
      *            键
-     * @param by
+     * @param delta
      *            要减少几(小于0)
      * @return
      */
