@@ -29,7 +29,7 @@ public class UserController {
 
         String salt = UUID.randomUUID().toString();
         user.setSalt(salt);
-        user.setPassword(Md5.INSTANCE.getMd5(password+salt+username));
+        user.setPassword(Md5.INSTANCE.getMd5((password+salt+username).toUpperCase()));
         user.setCreateDate(new Date());
 
         userService.addUser(user);
