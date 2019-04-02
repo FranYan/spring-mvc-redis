@@ -11,9 +11,11 @@ import java.util.concurrent.TimeUnit;
 
 public class RedisCacheManager {
 
-    @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
+    public void setRedisTemplate(RedisTemplate<String, Object> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
 
     /**
      * 指定缓存失效时间
@@ -512,8 +514,6 @@ public class RedisCacheManager {
      *            键
      * @param value
      *            值
-     * @param time
-     *            时间(秒)
      * @return
      */
     public boolean lSet(String key, Object value) {
@@ -556,8 +556,6 @@ public class RedisCacheManager {
      *            键
      * @param value
      *            值
-     * @param time
-     *            时间(秒)
      * @return
      */
     public boolean lSet(String key, List<Object> value) {
