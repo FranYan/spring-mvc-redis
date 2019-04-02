@@ -3,11 +3,9 @@
 <mapper namespace="com.theo.dao.UserDao">
 
     <select id="selectById" parameterType="java.lang.Long" resultType="com.theo.entity.User">
-        select * from user
+        select t.* from user t
         <where>
-            <if test="id != null">
-                id = #{id}
-            </if>
+            t.id = #{id}
         </where>
     </select>
 
@@ -34,5 +32,10 @@
           )
 
     </insert>
+
+    <select id="selectAll" resultType="com.theo.entity.User">
+        select * from user
+    </select>
+
 
 </mapper>

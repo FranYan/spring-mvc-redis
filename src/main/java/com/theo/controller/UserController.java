@@ -5,10 +5,7 @@ import com.theo.service.UserService;
 import com.theo.util.Md5;
 import com.theo.util.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -35,6 +32,14 @@ public class UserController {
         userService.addUser(user);
 
         System.out.println(user);
+
+        return new ResultBean(200,user);
+    }
+
+    @GetMapping("/getUser/{id}")
+    public ResultBean getUser(@PathVariable Long id){
+
+        User user = userService.getUserById(id);
 
         return new ResultBean(200,user);
     }
