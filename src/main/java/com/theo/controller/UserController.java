@@ -5,6 +5,7 @@ import com.theo.service.UserService;
 import com.theo.util.Md5;
 import com.theo.util.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/addUser")
+    @Transactional(rollbackFor = {Exception.class})
     public ResultBean addUser(@RequestBody User user , HttpServletRequest request){
 
         String username = user.getUsername();
@@ -30,6 +32,14 @@ public class UserController {
         user.setCreateDate(new Date());
 
         userService.addUser(user);
+
+        try {
+            if (true){
+                throw new RuntimeException();
+            }
+        }catch (Exception e){
+
+        }
 
         System.out.println(user);
 
