@@ -26,20 +26,12 @@ public class UserController {
         String username = user.getUsername();
         String password = user.getPassword();
 
-        String salt = UUID.randomUUID().toString();
+        String salt = Md5.INSTANCE.getUUID();
         user.setSalt(salt);
         user.setPassword(Md5.INSTANCE.getMd5((password+salt+username).toUpperCase()));
         user.setCreateDate(new Date());
 
         userService.addUser(user);
-
-        try {
-            if (true){
-                throw new RuntimeException();
-            }
-        }catch (Exception e){
-
-        }
 
         System.out.println(user);
 
